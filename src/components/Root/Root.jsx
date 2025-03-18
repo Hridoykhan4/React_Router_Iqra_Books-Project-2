@@ -5,7 +5,7 @@ import Navbar from "../Navbar/Navbar";
 const Root = () => {
   return (
     <div className="min-h-screen flex flex-col">
-      <header className="max-w-[1440px] w-11/12 mx-auto">
+      <header className="bg-base-100 shadow-sm">
         <Navbar></Navbar>
       </header>
       <section className="max-w-[1440px] w-11/12 mx-auto mt-7  mb-4">

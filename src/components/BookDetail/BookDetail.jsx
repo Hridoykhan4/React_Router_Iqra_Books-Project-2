@@ -2,10 +2,10 @@ import { useLoaderData, useParams } from "react-router-dom";
 import { addToStoredReadList, addToStoredWishList } from "../utility/addToDB";
 
 const BookDetail = () => {
+
   const { bookId } = useParams();
   const id = parseInt(bookId);
   const data = useLoaderData();
-
   const book = data.find((book) => book.bookId === id);
   const { image, bookId: currentBookId } = book;
 
@@ -23,13 +23,13 @@ const BookDetail = () => {
       <img className="w-36" src={image} alt="" />
       <div className="flex gap-3">
         <button
-          onClick={() => handleMarkAsRead(bookId)}
+          onClick={() => handleMarkAsRead(id)}
           className="btn btn-outline btn-accent"
         >
           Mark as Read
         </button>
         <button
-          onClick={() => handleWishList(bookId)}
+          onClick={() => handleWishList(id)}
           className="btn btn-accent"
         >
           Add To Wish List

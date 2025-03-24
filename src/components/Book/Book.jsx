@@ -1,15 +1,38 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-const Book = ({ book }) => {
-  const { image, bookName, author, tags, category, rating, bookId } = book;
+const Book = ({ book, handleRemove, fromRokoMari, fromReadList }) => {
+  const {
+    image,
+    bookName,
+    author,
+    tags,
+    category,
+    rating,
+    bookId,
+    yearOfPublishing: pubYear,
+  } = book;
+
+  const navigate = useNavigate();
+
+  const handleRokoMari = (e) => {
+    if (fromRokoMari ) {
+      e.preventDefault();
+    }
+    if(fromReadList){
+      e.preventDefault();
+      return;
+    }
+    navigate(`/rokoBookDetail/${book.bookId}`);
+  };
 
   return (
-    <Link to={`/books/${bookId}`}>
+    <Link to={`/books/${bookId}`} onClick={handleRokoMari}>
       <div className="card bg-base-100 p-6 border border-black/30 shadow-sm">
         <figure className="bg-gray-200 py-8 rounded-2xl">
           <img src={image} alt={bookName} className="h-[200px]" />
         </figure>
         <div className="card-body">
+          <div className="border-t border-black/50 border-dashed"></div>
           <div className="flex justify-center gap-3">
             {tags.map((tag, i) => (
               <button
@@ -21,15 +44,24 @@ const Book = ({ book }) => {
             ))}
           </div>
 
-          <div className="border-t border-black/50 border-dashed"></div>
+          {fromReadList && (
+            <button
+              onClick={() => handleRemove(bookId)}
+              className="btn btn-error btn-lg ms-auto text-white"
+            >
+              Remove
+            </button>
+          )}
 
           <h2 className="card-title">
             {bookName}
             <div className="badge badge-secondary">NEW</div>
           </h2>
           <p>By: {author}</p>
+          <p>Page: {book.totalPages}</p>
+          <div className="font-bold">Published Year: {pubYear}</div>
           <div className="flex justify-between">
-            <div className="badge font-semibold badge-outline">{category}</div>
+            <div className="btn-sm font-semibold badge-outline">{category}</div>
             Rating: {rating} {rating > 4.7 && `✔`}
           </div>
         </div>

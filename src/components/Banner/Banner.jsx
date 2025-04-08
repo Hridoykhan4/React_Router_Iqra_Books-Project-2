@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import bannerImg from "../../assets/books.jpg";
 
 const Banner = () => {
+  
   return (
     <div className="hero bg-base-200">
       <div className="flex sm:flex-row flex-col gap-5 items-center ">

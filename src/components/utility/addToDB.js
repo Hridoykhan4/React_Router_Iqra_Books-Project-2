@@ -23,8 +23,10 @@ const addToStoredWishList = (id) => {
   if (wishItems.includes(id)) {
     alert("");
   } else {
+
     wishItems.push(id);
     localStorage.setItem("wish-list", JSON.stringify(wishItems));
+    
   }
 };
 

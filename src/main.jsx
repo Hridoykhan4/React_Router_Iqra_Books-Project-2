@@ -11,6 +11,7 @@ import ListedBooks from "./components/ListedBooks/ListedBooks";
 import RokomariBooks from "./components/RokomariBooks/RokomariBooks";
 import RokomariDetail from "./components/RokomariDetail/RokomariDetail";
 import RokomariCartBooks from "./components/RokomariCartBooks/RokomariCartBooks";
+import CartProvider from "./Provider/CartProvider";
 
 const router = createBrowserRouter([
   {
@@ -28,10 +29,9 @@ const router = createBrowserRouter([
         loader: () => fetch("/bookData2.json"),
       },
       {
-        path: '/rokomarilistedbooks',
+        path: "/rokomarilistedbooks",
         element: <RokomariCartBooks></RokomariCartBooks>,
         loader: () => fetch("/bookData2.json"),
-
       },
       {
         path: "/rokoBookDetail/:bookId",
@@ -71,6 +71,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router}></RouterProvider>
+    <CartProvider>
+      <RouterProvider router={router}></RouterProvider>
+    </CartProvider>
   </StrictMode>
 );

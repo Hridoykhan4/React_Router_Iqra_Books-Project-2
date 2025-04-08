@@ -40,9 +40,16 @@ const DashBoard = () => {
       {readList.length > 0 ? (
         <ResponsiveContainer width="100%" height={300}>
           <ComposedChart data={readList}>
-            <XAxis dataKey="name" tick={{ fontSize: 12 }} />
+            <XAxis dataKey="name" tick={{ fontSize: 20 }} />
             <YAxis />
-            <Tooltip />
+            <Tooltip
+              stroke="#1343"
+              contentStyle={{
+                backgroundColor: "rgb(200, 200, 200)",
+                borderRadius: 5,
+                padding: "10px",
+              }}
+            />
             <Legend />
             <CartesianGrid stroke="#f5f5f5" />
             <Bar dataKey="publishedYear" barSize={60} fill="#413ea0" />

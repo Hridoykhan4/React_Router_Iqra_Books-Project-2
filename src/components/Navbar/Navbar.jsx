@@ -1,7 +1,10 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-
+import cart from "../../assets/cart.svg";
+import { CartContext } from "../../contexts/CartContext";
 const Navbar = () => {
+  const [cartItem] = useContext(CartContext);
+
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
 
   useEffect(() => {
@@ -103,6 +106,13 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
       <div className="navbar-end">
+        <div className="mr-3 text-white relative">
+          <img className="bg-white w-6 h-6" src={cart} alt="" />
+          <p className="absolute -top-5 -right-2 text-black bg-white">
+            {cartItem}
+          </p>
+        </div>
+
         <label className="swap swap-rotate">
           {/* this hidden checkbox controls the state */}
           <input

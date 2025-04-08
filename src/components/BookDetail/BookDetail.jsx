@@ -1,7 +1,14 @@
 import { useLoaderData, useParams } from "react-router-dom";
-import { addToStoredReadList, addToStoredWishList } from "../utility/addToDB";
+import {
+  addToStoredReadList,
+  addToStoredWishList,
+  getStoredWishList,
+} from "../utility/addToDB";
+import { useContext } from "react";
+import { CartContext } from "../../contexts/CartContext";
 
 const BookDetail = () => {
+  const [, setCart] = useContext(CartContext);
 
   const { bookId } = useParams();
   const id = parseInt(bookId);
@@ -14,7 +21,15 @@ const BookDetail = () => {
   };
 
   const handleWishList = (id) => {
+    const wishItems = getStoredWishList();
     addToStoredWishList(id);
+    if (!wishItems.includes(id)) {
+      setCart((prev) => {
+        const newCount = prev + 1;
+        localStorage.setItem("cart-items", parseInt(newCount));
+        return newCount;
+      });
+    }
   };
 
   return (
@@ -28,10 +43,7 @@ const BookDetail = () => {
         >
           Mark as Read
         </button>
-        <button
-          onClick={() => handleWishList(id)}
-          className="btn btn-accent"
-        >
+        <button onClick={() => handleWishList(id)} className="btn btn-accent">
           Add To Wish List
         </button>
       </div>

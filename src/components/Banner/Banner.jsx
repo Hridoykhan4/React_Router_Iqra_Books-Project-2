@@ -11,7 +11,7 @@ const Banner = () => {
             {" "}
             Books to freshen up your bookshelf
           </h1>
-          <Link to="/rokomaribooks" className="btn btn-primary">Check Rokomari Updates</Link>
+          <Link to="/rokomaribooks" className="btn btn-primary">Check Updates of Rokomari</Link>
         </div>
         <img
           src={bannerImg}
